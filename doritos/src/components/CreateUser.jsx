@@ -16,7 +16,7 @@ function CreateUser() {
         setSuccessMessage('');
 
         try {
-            const response = await fetch('https://horoscopo-backend.vercel.app/v1/signos/createUser', {
+            const response = await fetch('http://localhost:4000/v1/signos/createUser', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

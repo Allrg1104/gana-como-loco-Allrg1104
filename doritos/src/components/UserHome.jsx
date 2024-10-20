@@ -17,7 +17,7 @@ function UserHome({ user }) {
     async function handleSelect(event) {
         const signo = event.target.value;
         if (signo !== "0") {
-            fetch(`https://horoscopo-backend.vercel.app/v1/signos/${signo}`)
+            fetch(`http://localhost:4000/v1/signos/${signo}`)
                 .then(response => response.json())
                 .then(responseData => setTextoSigno(responseData))
         }
@@ -25,6 +25,14 @@ function UserHome({ user }) {
 
     return (
         <div className="container">
+            
+            <div className="Informacion del usuario">
+
+                <div id="Bienvenida"><h3>Bienvenido!!..</h3></div>
+
+
+
+            </div>
             <div id="txtSeleccionPage"><h3>Selecciona tu signo zodiacal</h3></div>
             
             <select id="selectgenero" onClick={handleSelect}>

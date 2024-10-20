@@ -12,7 +12,7 @@ function CreateAdmin() {
         event.preventDefault();
 
         try {
-            const response = await fetch('https://horoscopo-backend.vercel.app/v1/signos/createAdmin', {
+            const response = await fetch('http://localhost:4000/v1/signos/createAdmin', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
