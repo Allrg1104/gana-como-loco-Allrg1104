@@ -39,34 +39,18 @@ function Form({ callback }) {
 
     return (
         <form onSubmit={validateUser}>
-            <h1 id="txtBienvenida">Bienvenido a nuestro portal del Zodiaco</h1>
-            <h4 className="txt">Nombre de Usuario</h4>
+            <h1 id="txtBienvenida">Inicio de sesion</h1>
+            <h4 className="txt">Correo: </h4>
             <input type="text" className="entry" onChange={(e) => setUsername(e.target.value)} /><br />
             <h4 className="txt">Contraseña</h4>
             <input type="password" className="entry" onChange={(e) => setPassword(e.target.value)} /><br />
             <input type="submit" value="Ingresar" id="btnEnviar" />
 
-            {/* Botón para cambiar contraseña */}
-            <button
-                type="button"
-                id="btnChangePassword"
-                onClick={() => navigate('/changePassword')}
-            >
-                Cambiar Contraseña
-            </button>
-
             {/* Botón para crear usuario */}
-            <button
-                type="button"
-                id="btnCreateUser"
-                onClick={() => navigate('/createUser')}
-            >
-                Crear Usuario
+            <button type="button" id="btnCreateUser" onClick={() => navigate('/createUser')}
+            >   Crear Usuario
             </button>
-            {/* Botón para crear administrador */}
-            <button type="button" id="btnCreateAdmin" onClick={() => navigate('/createAdmin')}>
-                Crear Administrador
-            </button>
+            
 
         </form>
 
