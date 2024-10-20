@@ -1,0 +1,65 @@
+.container {
+    height: 300px;
+    display: grid;
+    place-items: center;
+}
+
+#selectSignosah {
+    margin-top: 0px;
+    margin: 100px;
+    width: 400px;
+    padding: 5px 50px 5px 10px;
+    border-radius: 10px;
+    background-color: rgb(95, 82, 82);
+    color: white;
+}
+
+#editSignos{
+    margin-top: 0px;
+    margin: 30px;
+    width: 400px;
+    padding: 5px 50px 5px 10px;
+    border-radius: 10px;
+    background-color: rgb(95, 82, 82);
+    color: white;
+}
+
+#btnEditarah {
+    margin-top: 15px;
+    padding: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 10px;
+    background-color: blue;
+    color: white
+}
+
+#textoAdmin {
+    font-style: italic;
+}
+
+#textoEditar {
+    margin-top: 0px;
+    margin: 100px;
+    border-radius: 10px;
+    display: flex;
+    background-color: rgb(95, 82, 82);
+    color: white;
+}
+
+#textoEditar{
+    border-radius: 10px;
+    display: flex;
+    background-color: rgb(95, 82, 82);
+    color: white;
+}
+
+#btnHomeAdmin {
+    margin-top: 15px;
+    padding: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 10px;
+    background-color: blue;
+    color: white
+}

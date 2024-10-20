@@ -1,0 +1,42 @@
+.container {
+    height: 300px;
+    display: grid;
+    place-items: center;
+}
+
+#selectgenero {
+    margin-top: 0px;
+    width: 400px;
+    padding: 5px 50px 5px 10px;
+    border-radius: 10px;
+    background-color: rgb(95, 82, 82);
+    color: white;
+}
+#selectSignos {
+    margin-top: 0px;
+    margin: 50px;
+    width: 400px;
+    padding: 5px 50px 5px 10px;
+    border-radius: 10px;
+    background-color: rgb(71, 63, 63);
+    color: white;
+}
+
+
+#txtSeleccionPage {
+    padding: 50px;
+    padding-bottom: 0px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-style: italic;
+}
+
+#btnHomeuh {
+    margin-top: 10px;
+    margin: 50px;
+    background-color: blue;
+    color: white;
+    padding: 50px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    border-radius: 10px;
+}
