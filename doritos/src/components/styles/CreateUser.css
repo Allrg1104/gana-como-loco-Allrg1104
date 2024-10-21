@@ -1,4 +1,13 @@
 /* src/styles/CreateUser.css */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f2f5;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+}
 
 .container {
     height: 300px;
@@ -6,19 +15,58 @@
     place-items: center;
 }
 
-#tituloCrearUsuario {
-    font-style: italic;
-    color: white;
+form {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
 }
 
-#inputUsername,
-#inputPassword {
+.entry {
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#tituloCrearUsuario {
+    font-style: italic;
+    color: #333;
+}
+
+#inputUsername {
+margin-top: 10px;
+width: 100%;
+padding: 10px;
+border-radius: 10px;
+background-color: #c4eef3;
+color: rgb(10, 10, 10);
+border: none;
+}
+
+
+#inputNombre {
     margin-top: 10px;
-    width: 400px;
+    width: 100%;
     padding: 10px;
     border-radius: 10px;
-    background-color: rgb(71, 63, 63);
-    color: white;
+    background-color: #c4eef3;
+    color: rgb(10, 10, 10);
+    border: none;
+    }
+
+#inputPassword {
+    margin-top: 10px;
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #c4eef3;
+    color: rgb(10, 10, 10);
     border: none;
 }
 
@@ -38,24 +86,71 @@
     transform: translateY(-50%);
     background: none;
     border: none;
-    color: white;
+    color: rgb(7, 7, 7);
     cursor: pointer;
 }
 
-#btnCrearu {
+button {
     margin-top: 15px;
-    padding: 5px 15px;
-    border-radius: 10px;
-    background-color: blue;
+    padding: 10px 20px;
+    border-radius: 25px;
+    background-color: #301bee;
     color: white;
+    border: none;
     cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #1a0dab;
 }
 
 #btnHome {
     margin-top: 15px;
-    padding: 5px 15px;
-    border-radius: 10px;
-    background-color: blue;
+    padding: 10px 20px;
+    border-radius: 25px;
+    background-color: #301bee;
     color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#btnHome:hover {
+    background-color: #1a0dab;
+}
+
+#txtBienvenida {
+    font-family: 'Trebuchet MS', sans-serif;
+    font-style: oblique;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.txt {
+    font-family: 'Trebuchet MS', sans-serif;
+    color: #333;
+}
+label {
+    display: flex;
+    align-items: center;
+    font-family: 'Arial', sans-serif;
+    color: #333;
     cursor: pointer;
 }
+
+input[type="checkbox"] {
+    margin-right: 10px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+input[type="checkbox"]:checked {
+    accent-color: #2ce9f0; /* Cambia el color del checkbox cuando está seleccionado */
+}
+
+label:hover {
+    color: #301bee; /* Cambia el color del texto al pasar el cursor */
+}
+

@@ -1,89 +1,56 @@
 body {
+    display: flex;
     justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f2f5;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+}
+
+form {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    width: 100%;
+    max-width: 400px;
     text-align: center;
 }
 
 .entry {
-    border-radius: 10px;
-    padding: 10px 20px 10px 35px;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    width: 100%;
+    box-sizing: border-box;
 }
 
-form {
-    padding: 20px;
-    padding-top: 10%;
-}
-
-#btnEnviar {
+button {
     margin-top: 20px;
-    background-color: rgb(48, 27, 238);
-    padding: 5px;
-    padding-left: 35px;
-    padding-right: 35px;
-    border-radius: 15px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: #301bee;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    font-family: 'Verdana', sans-serif;
     color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
+button:hover {
+    background-color: #1a0dab;
+}
 
 #txtBienvenida {
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: 'Trebuchet MS', sans-serif;
     font-style: oblique;
-    color: white;
+    color: #333;
+    margin-bottom: 20px;
 }
 
-/* Estilos para el botón de cambiar contraseña */
-#btnChangePassword {
-    margin-top: 20px;
-    background-color: rgb(48, 27, 238);
-    padding: 5px;
-    padding-left: 35px;
-    padding-right: 35px;
-    border-radius: 15px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    color: white;
-}
-#btnChangePassword:hover {
-    background-color: rgb(48, 27, 238);
-}
-
-/* Estilos para el botón de crear usuario */
-#btnCreateUser {
-    margin-top: 20px;
-    background-color: rgb(48, 27, 238);
-    padding: 5px;
-    padding-left: 35px;
-    padding-right: 35px;
-    border-radius: 15px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    color: white;
-}
-
-#btnCreateUser:hover {
-    background-color: rgb(48, 27, 238);
-    /* Cambia el color al pasar el cursor */
-}
-
-#btnCreateAdmin {
-    margin-top: 20px;
-    background-color: rgb(48, 27, 238);
-    padding: 5px;
-    padding-left: 35px;
-    padding-right: 35px;
-    border-radius: 15px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    color: white;
-}
-
-#btnCreateAdmin:hover {
-    background-color: rgb(48, 27, 238);
-}
-
-.txt{
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-}
-
-#txtBienvenida{
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-style: oblique;
-    color: white;
+.txt {
+    font-family: 'Trebuchet MS', sans-serif;
+    color: #333;
 }

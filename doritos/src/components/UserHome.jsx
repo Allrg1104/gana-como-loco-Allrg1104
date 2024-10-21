@@ -26,15 +26,13 @@ function UserHome({ user }) {
     return (
         <div className="container">
             
-            <div className="Informacion del Usuario">
-                <h2 className="presenteacion">¡Bienvenido Usuario!...</h2>
-                    <p className="user-email">Correo: usuario@ejemplo.com</p>
+            <div className="Informacion del usuario">
+
+                <div id="Bienvenida"><h3>Bienvenido!!..</h3></div>
+
+
+
             </div>
-            <div className="date-born">
-                        <input type="text" id="new-codigo"placeholder="Ingresar nuevo codigo" onChange={(e) => setNewCode(e.target.value)}/>
-                        <button onclick="insert-code()">Ingresar Codigo</button>
-                    </div>
-                    
             <div id="txtSeleccionPage"><h3>Selecciona tu signo zodiacal</h3></div>
             
             <select id="selectgenero" onClick={handleSelect}>
