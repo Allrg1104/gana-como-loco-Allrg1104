@@ -5,10 +5,12 @@ import { useNavigate } from 'react-router-dom';
 function Form({ callback }) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
     const navigate = useNavigate();
 
     const validateUser = async (event) => {
         event.preventDefault();
+        setError('');
         try {
             const response = await fetch('http://localhost:4000/v1/signos/login', {
                 method: 'POST',
@@ -18,22 +20,17 @@ function Form({ callback }) {
                 body: JSON.stringify({ username, password }),
             });
 
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-
             const data = await response.json();
 
-            if (data && data.success) {
-                alert(data.message);
+            if (response.ok && data.success) {
                 callback(data.role);
                 navigate(data.role === 'user' ? "/userHome" : "/adminHome");
             } else {
-                alert(data.message || 'Error desconocido');
+                setError(data.message || 'Error de autenticación');
             }
         } catch (error) {
             console.error('Error:', error);
-            alert('Error en la solicitud: ' + error.message);
+            setError('Error en la conexión con el servidor');
         }
     };
 

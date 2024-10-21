@@ -3,6 +3,7 @@ const { urlencoded, json } = require('express');
 const router = require('./routes/signos.routes.js');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const bcrypt = require ('bccryp');
 require ('dotenv').config();
 
 

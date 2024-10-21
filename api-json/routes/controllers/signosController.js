@@ -1,7 +1,12 @@
 const fs = require('fs/promises');
 const path = require('path');
+const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
-const getAllSignos = async (req, res) => {
+
+///////////////////////////////Antiguo/////////////////////////////////////////////////////
+
+/*const getAllSignos = async (req, res) => {
     const signo = await fs.readFile(path.join(__dirname, '../../db/signos.json'));
     const signosJson = JSON.parse(signo)
     res.json(signosJson);
@@ -32,7 +37,50 @@ const updateSigno = async (req, res) => {
     res.json({
         message: "Updated"
     })
+}*/
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// Definir el esquema del usuario
+const usuarioSchema = new mongoose.Schema({
+    username: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
+    role: { type: String, enum: ['user', 'admin'], default: 'user' }
+  });
+
+// Crear el modelo
+const Usuario = mongoose.model('Usuario', usuarioSchema);
+
+// Función de autenticación
+async function autenticarUsuario(username, password) {
+  try {
+    // Buscar el usuario en la base de datos
+    const usuario = await Usuario.findOne({ username });
+
+    if (!usuario) {
+      return { success: false, message: 'Usuario no encontrado' };
+    }
+
+    // Verificar la contraseña
+    const passwordValida = await bcrypt.compare(password, usuario.password);
+
+    if (!passwordValida) {
+      return { success: false, message: 'Contraseña incorrecta' };
+    }
+
+    // Autenticación exitosa
+    return {
+      success: true,
+      message: 'Autenticación exitosa',
+      role: usuario.role
+    };
+
+  } catch (error) {
+    console.error('Error en la autenticación:', error);
+    return { success: false, message: 'Error en el servidor' };
+  }
 }
+///////////////////////////////////////////////////////////////////////////////////////////////////////
 
 const login = async (req, res) => {
     const { username, password } = req.body;
@@ -152,11 +200,12 @@ const createAdmin = async (req, res) => {
 
 
 module.exports = {
-    getAllSignos,
+    //getAllSignos,
     login,
-    getOneSigno,
+    //getOneSigno,
     changePassword,
-    updateSigno,
+    //updateSigno,
     createUser,
-    createAdmin
+    createAdmin,
+    autenticarUsuario
 }
