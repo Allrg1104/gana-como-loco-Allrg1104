@@ -3,7 +3,6 @@ const { urlencoded, json } = require('express');
 const router = require('./routes/signos.routes.js');
 const cors = require('cors');
 const mongoose = require('mongoose');
-const bcrypt = require ('bccryp');
 require ('dotenv').config();
 
 
@@ -18,8 +17,7 @@ app.use(cors())
 app.use('/v1/signos', router);
 
 mongoose.connect(process.env.MONGODB_URI, {
-    /*useNewUrlParser: true,
-    useUnifiedTopology: true,*/
+    
   })
   .then(() => console.log('Conectado a MongoDB Atlas'))
   .catch(err => console.error('Error de conexión a MongoDB:', err));

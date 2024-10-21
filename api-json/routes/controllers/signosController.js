@@ -1,7 +1,7 @@
 const fs = require('fs/promises');
 const path = require('path');
-const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
+const CryptoJS = require('crypto-js');
+
 
 
 ///////////////////////////////Antiguo/////////////////////////////////////////////////////
@@ -41,45 +41,29 @@ const updateSigno = async (req, res) => {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// Definir el esquema del usuario
-const usuarioSchema = new mongoose.Schema({
-    username: { type: String, required: true, unique: true },
-    password: { type: String, required: true },
-    role: { type: String, enum: ['user', 'admin'], default: 'user' }
-  });
-
-// Crear el modelo
-const Usuario = mongoose.model('Usuario', usuarioSchema);
-
-// Función de autenticación
-async function autenticarUsuario(username, password) {
-  try {
-    // Buscar el usuario en la base de datos
-    const usuario = await Usuario.findOne({ username });
-
-    if (!usuario) {
-      return { success: false, message: 'Usuario no encontrado' };
+const postLogin = async (req, res) => {
+    const datos = req.body;
+    //console.log("LOGIN: ", datos);
+    const hashedPassword = CryptoJS.SHA256(datos.password, process.env.CODE_SECRET_DATA).toString();
+    console.log("PASSS: ", hashedPassword);
+    try{
+      const users =  await pool.db('allrg1104').collection('users').find().toArray()
+      console.log("USERS: ", users);
+      const login =  await pool.db('allrg1104').collection('users').findOne({ email: datos.email, password: hashedPassword });
+      if (login) {
+        // Obtener la fecha y hora actual en formato Bogotá
+        const currentDateTime = moment().tz('America/Bogota').format('YYYY-MM-DD HH:mm:ss');
+        // Almacenar en la colección log_login
+        await pool.db('allrg1104').collection('log_login').insertOne({ email: datos.email, role: login.role, date: currentDateTime });
+        res.json({ status: "Bienvenido", user: datos.email, role: login.role});
+      } else {
+        res.json({ status: "ErrorCredenciales" });
+      }
+    } catch (error) {
+      console.error('Error fetching user:', error);
+      res.status(500).json({ status: "Error", message: "Internal Server Error" });
     }
-
-    // Verificar la contraseña
-    const passwordValida = await bcrypt.compare(password, usuario.password);
-
-    if (!passwordValida) {
-      return { success: false, message: 'Contraseña incorrecta' };
-    }
-
-    // Autenticación exitosa
-    return {
-      success: true,
-      message: 'Autenticación exitosa',
-      role: usuario.role
-    };
-
-  } catch (error) {
-    console.error('Error en la autenticación:', error);
-    return { success: false, message: 'Error en el servidor' };
-  }
-}
+  };
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
 const login = async (req, res) => {
@@ -207,5 +191,5 @@ module.exports = {
     //updateSigno,
     createUser,
     createAdmin,
-    autenticarUsuario
+    postLogin
 }
