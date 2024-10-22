@@ -72,7 +72,7 @@ function LoginUser() {
     const validateUser = async (event) => {
         event.preventDefault();
         try {
-            const response = await fetch('http://localhost:5000/loginUser', {
+            const response = await fetch('http://localhost:5000/v1/signos/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -102,9 +102,9 @@ function LoginUser() {
         <form onSubmit={validateUser}>
             <h1 id="txtBienvenida">Inicio de sesión</h1>
             <h4 className="txt">Correo: </h4>
-            <input type="text" className="entry" onChange={(e) => setUsername(e.target.value)} /><br />
+            <input type="text" className="entry" onChange={(e) => setUsername(e.target.value)}required /><br />
             <h4 className="txt">Contraseña</h4>
-            <input type="password" className="entry" onChange={(e) => setPassword(e.target.value)} /><br />
+            <input type="password" className="entry" onChange={(e) => setPassword(e.target.value)}required /><br />
             
             {/* Botón para Inicio de sesion */}
             <button type="submit" id="btnCreateUser">

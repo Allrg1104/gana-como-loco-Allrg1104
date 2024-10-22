@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const router = require('./routes/signos.js');
 const cors = require('cors');
 require('dotenv').config();
 
@@ -10,6 +11,9 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
+app.use(cors())
+app.use('/v1/signos', router);
+
 
 
 mongoose.connect(process.env.MONGODB_URI, {
@@ -18,7 +22,7 @@ mongoose.connect(process.env.MONGODB_URI, {
 .catch(err => console.error('Error de conexión a MongoDB:', err));
 
 // Aquí puedes añadir tus rutas y modelos
-
+/*
 const userSchema = new mongoose.Schema({
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
@@ -30,7 +34,7 @@ const userSchema = new mongoose.Schema({
   role: { type: String, default: 'user' }
 });
 
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model('User', userSchema,'participantes');
 
 app.post('/loginUser', async (req, res) => {
   const { username,password } = req.body;
@@ -49,7 +53,7 @@ app.post('/loginUser', async (req, res) => {
       console.error('Error:', error);
       res.status(500).json({ success: false, message: 'Error en el servidor' });
     }
-  });
+  });*/
 
 
 
