@@ -37,10 +37,10 @@ app.post('/loginUser', async (req, res) => {
   const role = 'user';
   
   try {
-      const existingUser = await User.findOne({ username, password });
-     if (existingUser) {
+      const validateUser = await User.findOne({ username, password });
+     if (validateUser) {
         console.log("Login exitoso para:", username);
-        return res.json({ success: true, message: 'Login Succes' });
+        return res.json({ success: true, message: 'Login Success' });
       }
       else{
       res.status(400).json({ success: false, message: 'El usuario o contraseña no son correctas' });
