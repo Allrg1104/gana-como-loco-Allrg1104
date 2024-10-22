@@ -12,7 +12,7 @@ function CreateAdmin() {
         event.preventDefault();
 
         try {
-            const response = await fetch('http://localhost:4000/v1/signos/createAdmin', {
+            const response = await fetch('http://localhost:5000/v1/drivers/createUser', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

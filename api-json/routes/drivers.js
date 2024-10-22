@@ -5,7 +5,7 @@ const axios = require('axios');
 
 router
     .post('/login', masterController.loginUser)
-    //.post('/createUser', masterController.createUser)
+    .post('/createUser', masterController.createUser)
     //.post('/change-password', masterController.changePassword)
     //.post('/createAdmin', masterController.createAdmin);
 

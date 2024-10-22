@@ -4,8 +4,11 @@ import TextSigno from "./TextSigno.jsx";
 import { useState } from "react";
 
 function UserHome({ user }) {
+
+    
+    /*Selector de roles*/
     if (user !== "user" || !user) {
-        return <Navigate to="/" />
+        /*return <Navigate to="/" />*/
     }
     const home = useNavigate();
     const [textoSigno, setTextoSigno] = useState('');

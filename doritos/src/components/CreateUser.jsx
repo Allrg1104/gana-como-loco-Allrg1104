@@ -22,7 +22,7 @@ function CreateUser() {
         setSuccessMessage('');
 
         try {
-            const response = await axios.post('http://localhost:5000/createUser', {
+            const response = await axios.post('http://localhost:5000/v1/drivers/createUser', {
                 username,
                 password,
                 nombre,
