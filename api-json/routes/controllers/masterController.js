@@ -1,6 +1,4 @@
 const fs = require('fs/promises');
-const path = require('path');
-const axios = require('axios');
 const mongoose = require('mongoose');
 
 ///////////////////////////////////////////Modelo de base de datos////////////////////////////////////////
