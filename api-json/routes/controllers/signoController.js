@@ -1,5 +1,6 @@
 const fs = require('fs/promises');
 const path = require('path');
+const axios = require('axios');
 
 /*const getAllSignos = async (req, res) => {
     const signo = await fs.readFile(path.join(__dirname, '../../db/signos.json'));
@@ -227,20 +228,47 @@ const userSchema = new mongoose.Schema({
 
   app.post('/loginUser', async (req, res) => {
     const { username, password } = req.body;
-    const user = await pool.db('test').collection('users').find().toArray()
-    console.log("USERS: ", user);
-    const login = await pool.db('test').collection('users').findOne({ username: username.username , password: password.password });
-    if (login) {
-      res.json({ success: true, message: 'Login successful', user });
-    } else {
-      res.status(401).json({ success: false, message: 'Invalid credentials' });
+    try {
+        const user = await pool.db('test').collection('users').find().toArray();
+        console.log("USERS: ", user);
+        const login = await pool.db('test').collection('users').findOne({ username, password });
+        if (login) {
+            console.log("Registro", login);
+            res.json({ success: true, message: 'Login successful :D', username });
+        } else {
+            res.status(401).json({ success: false, message: 'Invalid credentials' });
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ success: false, message: 'Internal Server Error' });
     }
-  });
-  
+});
 
+/*const loginUser = async (req, res) => {
+    console.log('Request body:', req.body); // Verificar si los datos del body llegan
+    const { username, password } = req.body;
+    try {
+        await client.connect();
+        const database = client.db('test');
+        const users = database.collection('users');
 
+        console.log("USERS: ", await users.find().toArray()); // Comprobar si se obtienen usuarios
 
-
+        const login = await users.findOne({ username, password });
+        if (login) {
+            console.log('Login successful for user:', username);
+            res.json({ success: true, message: 'Login successful', user: login });
+        } else {
+            console.log('Invalid credentials for user:', username);
+            res.status(401).json({ success: false, message: 'Invalid credentials' });
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ success: false, message: 'Internal Server Error' });
+    } finally {
+        await client.close();
+    }
+};*/
 
 module.exports = {
     getAllSignos,
