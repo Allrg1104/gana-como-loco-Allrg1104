@@ -1,6 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const router = require('./routes/signos.js');
+const router = require('./routes/drivers.js');
 const cors = require('cors');
 require('dotenv').config();
 
@@ -12,7 +12,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use(cors())
-app.use('/v1/signos', router);
+app.use('/v1/drivers', router);
 
 
 

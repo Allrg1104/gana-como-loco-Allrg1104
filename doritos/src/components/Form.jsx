@@ -72,7 +72,7 @@ function LoginUser() {
     const validateUser = async (event) => {
         event.preventDefault();
         try {
-            const response = await fetch('http://localhost:5000/v1/signos/login', {
+            const response = await fetch('http://localhost:5000/v1/drivers/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
