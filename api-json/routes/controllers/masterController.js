@@ -1,7 +1,7 @@
 const fs = require('fs/promises');
 const mongoose = require('mongoose');
 
-///////////////////////////////////////////Modelo de base de datos////////////////////////////////////////
+///////////////////////////////////////////Estructura de base de datos Crear usuarios////////////////////////////////////////
 const userSchema = new mongoose.Schema({
     username: { type: String, required: true, unique: true },
     password: { type: String, required: true },
@@ -65,7 +65,58 @@ const createUser = async (req, res) => {
   }
 };
 
+
+/////////////////////////////////////////////Estructura de base de datos registrar codigo /////////////////////////////////////////////////////////////////////
+
+const codeSchema = new mongoose.Schema({
+  codigo: { type: String, required: true, unique: true },
+  date: { type: Date, default: Date.now },
+  estado: { type: String, required: true },
+  user: { type: String, required: true, default: username }
+});
+
+const Codigo = mongoose.model('premios', codeSchema,'lista');
+
+//////////////////////////////////////////Registrar Codigos////////////////////////////////////////////////
+
+const newCode = async (req, res) => {
+  const { codigo } = req.body;
+
+  try {
+    // Verificar si el código ya está registrado
+    const codigoExistente = await Codigo.findOne({ codigo });
+
+    if (codigoExistente) {
+        if (codigoExistente.estado === 'libre') {
+            // Cambiar el estado a 'registrado'
+            codigoExistente.estado = 'registrado';
+
+            await codigoExistente.save();
+            return res.status(200).json({ mensaje: 'El código ha sido registrado exitosamente.' });
+        } else if (codigoExistente.estado === 'registrado') {
+            return res.status(400).json({ mensaje: 'El código ya está registrado.' });
+        }
+    } else {
+        // Si el código no existe, mostrar un error
+        return res.status(400).json({ mensaje: 'Código no válido.' });
+    }
+} catch (error) {
+    res.status(500).json({ mensaje: 'Error al registrar el código.', error });
+}};
+
+
+//////////////////////////////////////////Llamar Datos del participante////////////////////////////////////////////////
+
+const getAllParticip = async (req, res) => {
+  const allParticipante = await User.findOne({ username });
+  const participanteJson = JSON.parse(allParticipante)
+  res.json(participanteJson);
+};
+
 module.exports = {
     loginUser,
-    createUser
+    createUser,
+    newCode,
+    getAllParticip
+
 }

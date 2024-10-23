@@ -89,8 +89,8 @@ function ChangePassword() {
                     {showNewPassword ? 'Ocultar' : 'Mostrar'}
                 </button>
             </div>
-            <button id="btnEditar" onClick={handleChangePassword}>Editar</button>
-            <button id="btnHome" onClick={() => navigate('/')}>Home</button>
+            <button id="btnEditar" onClick={handleChangePassword}>Actualzar</button>
+            <button id="btnHome" onClick={() => navigate('/UserHome')}>Regresar</button>
         </div>
     );
 }
