@@ -110,24 +110,23 @@ const newCode = async (req, res) => {
 //////////////////////////////////////////Llamar Datos del participante////////////////////////////////////////////////
 
 const getAllParticip = async (req, res) => {
-  // Corregido: Desestructuración correcta de req.body
   const { username, password } = req.body;
 
   try {
-    // Consulta a la base de datos para buscar el usuario con username y password
-    const allParticipante = await User.findOne({ username, password });
-    
-    if (allParticipante) {
+    // Buscar usuarios y solo seleccionar los campos: correo, ciudad, y numero
+    const allParticipantes = await User.find(
+      { username, password },   // Condiciones de búsqueda
+      { nombre:1, numeroCelular: 1, ciudad: 1, _id: 0 }  // Proyección: solo los campos que quieres traer
+    );
+
+    if (allParticipantes.length > 0) {
       console.log("Consulta exitosa");
-      
-      // No es necesario hacer JSON.parse, ya es un objeto JavaScript
-      return res.json(allParticipante);  
+
+      return res.json(allParticipantes);  
     } else {
-      // Si no se encuentra el usuario, devolver un mensaje o un estado 404
-      return res.status(404).json({ mensaje: 'Usuario no encontrado' });
+      return res.status(404).json({ mensaje: 'Usuarios no encontrados' });
     }
   } catch (error) {
-    // Manejo de errores, por si ocurre un problema con la consulta
     return res.status(500).json({ mensaje: 'Error en la consulta', error });
   }
 };
