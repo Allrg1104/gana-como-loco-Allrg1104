@@ -1,56 +1,64 @@
 body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f0f2f5;
-    font-family: 'Arial', sans-serif;
-    margin: 0;
+    background-image: url('path/to/your/background-image.jpg');
+    background-size: cover;
+    background-position: center;
 }
 
 form {
-    background-color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 2rem;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 40px;
-    width: 100%;
-    max-width: 400px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 300px;
     text-align: center;
 }
 
-.entry {
-    border-radius: 5px;
-    padding: 10px 20px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    width: 100%;
-    box-sizing: border-box;
+#txtInicioSesion {
+    color: #ff6600;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
 }
 
-button {
-    margin-top: 20px;
-    background-color: #301bee;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 25px;
-    font-family: 'Verdana', sans-serif;
+.txt {
+    color: #333;
+    margin-bottom: 0.5rem;
+    text-align: left;
+}
+
+.entry {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#btnCreateUser {
+    background-color: #ff6600;
     color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    margin: 0.5rem;
+    border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
-button:hover {
-    background-color: #1a0dab;
+#btnCreateUser:hover {
+    background-color: #e55b00;
 }
 
-#txtBienvenida {
-    font-family: 'Trebuchet MS', sans-serif;
-    font-style: oblique;
-    color: #333;
-    margin-bottom: 20px;
-}
-
-.txt {
-    font-family: 'Trebuchet MS', sans-serif;
-    color: #333;
+@media (max-width: 480px) {
+    form {
+        width: 90%;
+        padding: 1rem;
+    }
 }
