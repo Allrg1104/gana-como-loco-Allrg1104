@@ -22,7 +22,7 @@ const AdminSchema = new mongoose.Schema({
   role: { type: String, default: 'admin' }
 });
 
-const Admin = mongoose.model('User', AdminSchema,'participantes');
+const Admin = mongoose.model('Admin', AdminSchema,'participantes');
 
 /////////////////////////////////////////////LOGIN/////////////////////////////////////////////////////////////////////
 
