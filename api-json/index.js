@@ -10,7 +10,14 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-app.use(cors())
+// Permitir solicitudes desde el frontend
+const corsOptions = {
+  origin: 'https://gana-como-loco-allrg1104-front.vercel.app',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true, // Si necesitas enviar cookies
+  optionsSuccessStatus: 200
+};
+
 app.use('/v1/drivers', router);
 
 mongoose.connect(process.env.MONGODB_URI, {
