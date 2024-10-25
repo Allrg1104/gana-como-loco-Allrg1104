@@ -41,10 +41,6 @@ function AdminHome(){
         }
     }
 
-    function goHome() {
-        home("/");
-    }
-
     function handleClick(e) {
         e.preventDefault();
 
