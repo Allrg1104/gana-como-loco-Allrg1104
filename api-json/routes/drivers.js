@@ -8,6 +8,6 @@ router
     .post('/createUser', masterController.createUser)
     .post('/regCode', masterController.newCode)
     .get('/getPartip', masterController.getAllParticip)
-    //.get('/mostCode', masterController.verCode);
+    .get('/mostCode', masterController.getCodes);
 
     module.exports = router;

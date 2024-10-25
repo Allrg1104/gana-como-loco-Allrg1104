@@ -140,10 +140,22 @@ const getAllParticip = async (req, res) => {
   }
 };
 
+//////////////////////////////////////////Llamar codigos////////////////////////////////////////////////
+
+const getCodes = async (req, res) => {
+  try {
+    const codes = await Code.find();
+    res.json(codes);
+  } catch (error) {
+    res.status(500).json({ message: 'Error al obtener los códigos' });
+  }
+};
+
 module.exports = {
     loginUser,
     createUser,
     newCode,
-    getAllParticip
+    getAllParticip,
+    getCodes
 
 }
