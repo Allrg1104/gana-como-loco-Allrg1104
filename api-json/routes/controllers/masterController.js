@@ -22,7 +22,7 @@ const AdminSchema = new mongoose.Schema({
   role: { type: String, default: 'admin' }
 });
 
-const admin = mongoose.model('User', AdminSchema,'participantes');
+const Admin = mongoose.model('User', AdminSchema,'participantes');
 
 /////////////////////////////////////////////LOGIN/////////////////////////////////////////////////////////////////////
 
@@ -92,18 +92,18 @@ const createAdmin = async (req, res) => {
   const role = 'admin';
 
   try {
-    const existingUser = await admin.findOne({ username });
-    if (existingUser) {
+    const existingAdmin = await Admin.findOne({ username });
+    if (existingAdmin) {
       return res.status(400).json({ success: false, message: 'Usuario ya existe' });
     }
 
-    const newUser = new User({
+    const newAdmin = new Admin({
       username,
       password,
       role
     });
 
-    await newUser.save();
+    await newAdmin.save();
     res.json({ success: true, message: 'Usuario Administrador creado exitosamente' });
   } catch (error) {
     console.error('Error:', error);
