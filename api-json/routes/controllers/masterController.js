@@ -115,10 +115,12 @@ const createAdmin = async (req, res) => {
 /////////////////////////////////////////////Estructura de base de datos registrar codigo /////////////////////////////////////////////////////////////////////
 
 const codeSchema = new mongoose.Schema({
+  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
   codigo: { type: String, required: true, unique: true },
   date: { type: Date, default: Date.now },
   estado: { type: String, required: true },
   user: { type: String, required: true }
+
 });
 
 const Codigo = mongoose.model('premios', codeSchema,'lista');
@@ -180,12 +182,13 @@ const getAllParticip = async (req, res) => {
 
 const getCodes = async (req, res) => {
   try {
-    const codes = await Code.find();
+    const codes = await Code.find().populate('nombre', 'username');
     res.json(codes);
   } catch (error) {
-    res.status(500).json({ message: 'Error al obtener los códigos' });
-  }
+    res.status(500).json({ message: 'Error al obtener los códigos' });
+  }
 };
+
 
 module.exports = {
     loginUser,

@@ -13,7 +13,7 @@ function UserHome() {
     // Función para obtener datos del usuario y códigos registrados desde el backend
     const fetchUserData = async () => {
       try {
-        const response = await fetch('https://gana-como-loco-allrg1104-backend.vercel.app/v1/drivers/getAllParticip', {
+        const response = await fetch('https://gana-como-loco-allrg1104-backend.vercel.app/v1/drivers/getPartip', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -35,7 +35,7 @@ function UserHome() {
           });
 
           // Obtener códigos registrados
-          const codesResponse = await axios.get('https://gana-como-loco-allrg1104-backend.vercel.app/v1/drivers/getCodes');
+          const codesResponse = await axios.get('https://gana-como-loco-allrg1104-backend.vercel.app/v1/drivers/mostCode');
           setCodes(codesResponse.data);
         } else {
           console.error('Error al obtener los datos del usuario');
@@ -138,9 +138,11 @@ function UserHome() {
                 </tr>
               </thead>
               <tbody>
-                {codes.map((code, index) => (
-                  <tr key={index}>
-                    <td>{code.date}</td>
+                {codes.map((code) => (
+                  <tr key={code._id}>
+                    <td>{code.user.nombre}</td>
+                    <td>{code.user.username}</td>
+                    <td>{code.estado}</td>
                     <td>{code.codigo}</td>
                     <td>{code.estado}</td>
                   </tr>
