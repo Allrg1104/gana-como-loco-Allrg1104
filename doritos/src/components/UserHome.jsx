@@ -101,6 +101,7 @@ function UserHome() {
 
         <section className="registrar-codigo">
           <h2>Registrar Nuevo Código</h2>
+          
           <form onSubmit={handleSubmit}>
             <input
               type="text"
@@ -111,6 +112,7 @@ function UserHome() {
             />
             <button type="submit" className="submit-btn">Enviar</button>
           </form>
+
         </section>
 
         <section className="code-list">

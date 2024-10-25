@@ -3,7 +3,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 90vh;
     background-color: #103f85;
     font-family: 'Arial', sans-serif;
     margin: 0;
@@ -20,8 +20,7 @@ form {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(236, 19, 19, 0.1);
     padding: 40px;
-    width: 100%;
-    max-width: 400px;
+    width: 60%;
     text-align: center;
 }
 

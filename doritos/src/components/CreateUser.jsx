@@ -44,76 +44,77 @@ function CreateUser() {
     };
 
     return (
-        <div className="container">
-            <form onSubmit={handleCreateUser}>
-                <div className='Bloque de registro'>
-                    <h1 id="tituloCrearUsuario">Crear Usuario</h1>
-                    <input
-                        type="text"
-                        id="inputNombre"
-                        placeholder="Nombre completo"
-                        onChange={(e) => setNombre(e.target.value)}
-                        required
-                    />
-                    <div className="date-born">
-                        <input
-                            type="date"
-                            id="inputPassword"
-                            placeholder="Fecha de Nacimiento"
-                            onChange={(e) => setDateBorn(e.target.value)}
-                            required
-                        />
-                    </div>
-                    <div className="cedula">
+        <div className='allcreateUser'>
+            <div className="container">
+                <form onSubmit={handleCreateUser}>
+                    <div className='Bloque de registro'>
+                        <h1 id="tituloCrearUsuario">Crear Usuario</h1>
                         <input
                             type="text"
-                            id="inputPassword"
-                            placeholder="Documento de identificación"
-                            onChange={(e) => setNit(e.target.value)}
+                            id="inputNombre"
+                            placeholder="Nombre completo"
+                            onChange={(e) => setNombre(e.target.value)}
                             required
                         />
-                    </div>
-                    <div className="ciudad">
-                        <input
-                            type="text"
-                            id="inputPassword"
-                            placeholder="Ciudad"
-                            onChange={(e) => setCity(e.target.value)}
-                            required
-                        />
-                    </div>
-                    <div className="numeroCelular">
-                        <input
-                            type="text"
-                            id="inputPassword"
-                            placeholder="Número de celular"
-                            onChange={(e) => setPhone(e.target.value)}
-                            required
-                        />
-                    </div>
-                    <div className="email">
-                        <input
-                            type="text"
-                            id="inputUsername"
-                            placeholder="Nombre de usuario"
-                            onChange={(e) => setUsername(e.target.value)}
-                            required
-                        />
-                    </div>
-                    <div className="password">
-                        <input
-                            type={showPassword ? "text" : "password"}
-                            id="inputPassword"
-                            placeholder="Contraseña"
-                            onChange={(e) => setPassword(e.target.value)}
-                            required
-                        />
-                    </div>
-                    <div className="checkbox">
-                    <label type="checkbox" onClick={() => setShowPassword(!showPassword)}>
-                        {showPassword ? "Ocultar" : "Mostrar"} Contraseña
-                    </label>
-                    </div>
+                        <div className="date-born">
+                            <input
+                                type="date"
+                                id="inputPassword"
+                                placeholder="Fecha de Nacimiento"
+                                onChange={(e) => setDateBorn(e.target.value)}
+                                required
+                            />
+                        </div>
+                        <div className="cedula">
+                            <input
+                                type="text"
+                                id="inputPassword"
+                                placeholder="Documento de identificación"
+                                onChange={(e) => setNit(e.target.value)}
+                                required
+                            />
+                        </div>
+                        <div className="ciudad">
+                            <input
+                                type="text"
+                                id="inputPassword"
+                                placeholder="Ciudad"
+                                onChange={(e) => setCity(e.target.value)}
+                                required
+                            />
+                        </div>
+                        <div className="numeroCelular">
+                            <input
+                                type="text"
+                                id="inputPassword"
+                                placeholder="Número de celular"
+                                onChange={(e) => setPhone(e.target.value)}
+                                required
+                            />
+                        </div>
+                        <div className="email">
+                            <input
+                                type="text"
+                                id="inputUsername"
+                                placeholder="Nombre de usuario"
+                                onChange={(e) => setUsername(e.target.value)}
+                                required
+                            />
+                        </div>
+                        <div className="password">
+                            <input
+                                type={showPassword ? "text" : "password"}
+                                id="inputPassword"
+                                placeholder="Contraseña"
+                                onChange={(e) => setPassword(e.target.value)}
+                                required
+                            />
+                        </div>
+                        <div className="checkbox">
+                        <label type="checkbox" onClick={() => setShowPassword(!showPassword)}>
+                            {showPassword ? "Ocultar" : "Mostrar"} Contraseña
+                        </label>
+                        </div>
                     <button type="submit" id="btnCreateUser"  >Crear Usuario</button>
                     <button type="button" id="btnCreateUser" onClick={() => navigate('/')}>
                         Regresar
@@ -122,6 +123,7 @@ function CreateUser() {
                     {errorMessage && <p className="error">{errorMessage}</p>}
                 </div>
             </form>
+        </div>
         </div>
     );
 }
