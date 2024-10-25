@@ -6,7 +6,6 @@ import ChangePassword from './components/ChangePassword';
 import CreateUser from './components/CreateUser'; // Importa el nuevo componente
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
-import CreateAdmin from './components/CreateAdmin'; // Importa el nuevo componente
 
 function App() {
   const [user, setUser] = useState(null);
