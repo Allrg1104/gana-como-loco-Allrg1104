@@ -23,7 +23,7 @@ function CreateAdmin() {
             });
 
             if (response.data.success) {
-                setSuccessMessage('Usuario creado exitosamente');
+                setSuccessMessage('Usuario Administrador creado exitosamente');
             } else {
                 setErrorMessage(response.data.message || 'Error en la creación de usuario');
             }

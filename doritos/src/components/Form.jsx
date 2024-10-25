@@ -52,6 +52,9 @@ function LoginUser() {
             <button type="button" id="btnCreateUser" onClick={() => navigate('/createUser')}>
                 Crear Usuario
             </button>
+            <button type="button" id="btnCreateUser" onClick={() => navigate('/createUser')}>
+                Crear Admin
+            </button>
             
         </form>
     );
