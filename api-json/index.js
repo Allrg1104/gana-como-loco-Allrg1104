@@ -4,6 +4,13 @@ const router = require('./routes/drivers.js');
 const cors = require('cors');
 require('dotenv').config();
 
+// Permitir solicitudes desde el frontend
+const corsOptions = {
+  origin: 'https://gana-como-loco-allrg1104-front.vercel.app',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true, // Si necesitas enviar cookies
+  optionsSuccessStatus: 200
+};
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -14,15 +21,10 @@ app.use(cors({
 
 app.use(express.json());
 
-// Permitir solicitudes desde el frontend
-const corsOptions = {
-  origin: 'https://gana-como-loco-allrg1104-front.vercel.app',
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true, // Si necesitas enviar cookies
-  optionsSuccessStatus: 200
-};
 
 app.use('/v1/drivers', router);
+
+MONGODB_URI=mongodb+srv//allrg1104:RRp4xn4bxtzh1EWS@allrg1104.xtqyw.mongodb.net/gana_como_loco?retryWrites=true&w=majority&appName=Allrg1104
 
 mongoose.connect(process.env.MONGODB_URI, {
   })
