@@ -35,7 +35,7 @@ function UserHome() {
           });
 
           // Obtener códigos registrados
-          const codesResponse = await axios.get('https://gana-loco-back-end.vercel.app/v1/drivers/regCode');
+          const codesResponse = await axios.get('https://gana-como-loco-allrg1104-backend.vercel.app/v1/drivers/regCode');
           setCodes(codesResponse.data);
         } else {
           console.error('Error al obtener los datos del usuario');
