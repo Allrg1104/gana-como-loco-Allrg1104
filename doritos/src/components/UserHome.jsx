@@ -35,7 +35,7 @@ function UserHome() {
           });
 
           // Obtener códigos registrados
-          const codesResponse = await axios.get('https://gana-como-loco-allrg1104-backend.vercel.app/v1/drivers/regCode');
+          const codesResponse = await axios.get('https://gana-como-loco-allrg1104-backend.vercel.app/v1/drivers/getCodes');
           setCodes(codesResponse.data);
         } else {
           console.error('Error al obtener los datos del usuario');
@@ -140,8 +140,8 @@ function UserHome() {
               <tbody>
                 {codes.map((code, index) => (
                   <tr key={index}>
-                    <td>{code.fechaRegistro}</td>
-                    <td>{code.numeroCodigo}</td>
+                    <td>{code.date}</td>
+                    <td>{code.codigo}</td>
                     <td>{code.estado}</td>
                   </tr>
                 ))}
