@@ -21,7 +21,7 @@ function AdminHome(){
         });
 
         // Obtener la lista de ganadores
-        fetch('http://localhost:4000/v1/ganadores')
+        fetch('https://gana-como-loco-allrg1104-backend.vercel.app/v1/ganadores')
             .then(response => response.json())
             .then(data => setGanadores(data))
             .catch(error => console.error('Error fetching ganadores:', error));

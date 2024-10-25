@@ -10,7 +10,7 @@ function LoginUser() {
     const validateUser = async (event) => {
         event.preventDefault();
         try {
-            const response = await fetch('http://localhost:5000/v1/drivers/login', {
+            const response = await fetch('https://gana-como-loco-allrg1104-backend.vercel.app/v1/drivers/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

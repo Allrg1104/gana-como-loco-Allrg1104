@@ -12,7 +12,7 @@ function UserHome() {
     // Función para obtener datos del usuario y códigos registrados desde el backend
     const fetchUserData = async () => {
       try {
-        const response = await fetch('http://localhost:5000/v1/drivers/getAllParticip', {
+        const response = await fetch('https://gana-como-loco-allrg1104-backend.vercel.app/v1/drivers/getAllParticip', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
