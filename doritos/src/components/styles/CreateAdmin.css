@@ -143,6 +143,7 @@ input[type="checkbox"]:checked {
 }
 
 #checkbox{
+    margin: 5%;
     display: flex;
     align-items: center;
     font-family: 'Arial', sans-serif;

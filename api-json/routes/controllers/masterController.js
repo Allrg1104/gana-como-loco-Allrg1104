@@ -14,6 +14,16 @@ const userSchema = new mongoose.Schema({
   });
 
   const User = mongoose.model('User', userSchema,'participantes');
+
+///////////////////////////////////////////Estructura de base de datos Crear Administrador////////////////////////////////////////
+const AdminSchema = new mongoose.Schema({
+  username: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
+  role: { type: String, default: 'admin' }
+});
+
+const admin = mongoose.model('User', AdminSchema,'participantes');
+
 /////////////////////////////////////////////LOGIN/////////////////////////////////////////////////////////////////////
 
 const loginUser = async (req, res) => {
@@ -69,6 +79,32 @@ const createUser = async (req, res) => {
 
     await newUser.save();
     res.json({ success: true, message: 'Usuario creado exitosamente' });
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ success: false, message: 'Error en el servidor' });
+  }
+};
+
+/////////////////////////////////////////////Create User/////////////////////////////////////////////////////////////////////
+
+const createAdmin = async (req, res) => {
+  const { username, password } = req.body;
+  const role = 'admin';
+
+  try {
+    const existingUser = await admin.findOne({ username });
+    if (existingUser) {
+      return res.status(400).json({ success: false, message: 'Usuario ya existe' });
+    }
+
+    const newUser = new User({
+      username,
+      password,
+      role
+    });
+
+    await newUser.save();
+    res.json({ success: true, message: 'Usuario Administrador creado exitosamente' });
   } catch (error) {
     console.error('Error:', error);
     res.status(500).json({ success: false, message: 'Error en el servidor' });
@@ -154,6 +190,7 @@ const getCodes = async (req, res) => {
 module.exports = {
     loginUser,
     createUser,
+    createAdmin,
     newCode,
     getAllParticip,
     getCodes
