@@ -19,7 +19,6 @@ function App() {
         <Route path='/adminHome' element={<AdminHome user={user} />} />
         <Route path='/changePassword' element={<ChangePassword />} />
         <Route path='/createUser' element={<CreateUser />} />
-        <Route path='/createAdmin' element={<CreateAdmin />} /> {/* Nueva ruta */}
       </Routes>
     </BrowserRouter>
   );

@@ -54,6 +54,12 @@ function LoginUser() {
             <button type="button" id="btnCreateUser" onClick={() => navigate('/UserHome')}>
                 Usuario
             </button>
+            <button type="button" id="btnCreateUser" onClick={() => navigate('/AdminHome')}>
+                Admin
+            </button>
+            <button type="button" id="btnCreateUser" onClick={() => navigate('/changePassword')}>
+                cambio de contraseña
+            </button>
         </form>
     );
 }

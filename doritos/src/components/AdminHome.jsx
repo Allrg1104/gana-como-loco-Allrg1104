@@ -1,18 +1,31 @@
-import { Navigate, useNavigate } from "react-router-dom";
-import './styles/AdminHome.css'
-import { useState } from "react";
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
+import './styles/AdminHome.css';
 
-function AdminHome({ user }) {
-    if (user !== 'admin' || !user) {
-        return <Navigate to="/" />
-    }
+
+function AdminHome(){
     const home = useNavigate();
-    const [textoEditar, setTextoEditar] = useState("");
-    const [signoEditar, setSignoEditar] = useState("");
-    const [generoEditar, setGeneroEditar] = useState(""); // Nuevo estado para el género seleccionado
+    
+    const [adminData, setAdminData] = useState({});
+    const [ganadores, setGanadores] = useState([]);
+    const navigate = useNavigate();
 
-    // Lista de palabras prohibidas
     const palabrasProhibidas = ["hpta", "malparido", "perra"];
+
+    useEffect(() => {
+        // Simulación de datos del admin
+        setAdminData({
+            nombre: "Admin",
+            email: "admin@example.com",
+            rol: "Administrador"
+        });
+
+        // Obtener la lista de ganadores
+        fetch('http://localhost:4000/v1/ganadores')
+            .then(response => response.json())
+            .then(data => setGanadores(data))
+            .catch(error => console.error('Error fetching ganadores:', error));
+    }, []);
 
     function handleSelectSigno(event) {
         const signo = event.target.value;
@@ -35,11 +48,10 @@ function AdminHome({ user }) {
     function handleClick(e) {
         e.preventDefault();
 
-        // Verificar si el texto contiene alguna palabra prohibida
         const textoProhibido = palabrasProhibidas.some(palabra => textoEditar.toLowerCase().includes(palabra));
         if (textoProhibido) {
             alert("El texto contiene palabras no permitidas. Por favor, modifícalo.");
-            return; // Evitar que se envíe la solicitud si hay palabras prohibidas
+            return;
         }
 
         if (signoEditar && generoEditar) {
@@ -52,36 +64,68 @@ function AdminHome({ user }) {
     }
 
     return (
-        <div class="container">
-            <h2 id="textoAdmin">Edita un Signo Zodiacal</h2>
-            <select id="editSignos" onChange={handleSelectSigno}>
-                <option value="0">Seleciona un signo zodiacal</option>
-                <option value="Aries">Aries</option>
-                <option value="Geminis">Géminis</option>
-                <option value="Cancer">Cáncer</option>
-                <option value="Leo">Leo</option>
-                <option value="Virgo">Virgo</option>
-                <option value="Libra">Libra</option>
-                <option value="Escorpio">Escorpio</option>
-                <option value="Sagitario">Sagitario</option>
-                <option value="Capricornio">Capricornio</option>
-                <option value="Acuario">Acuario</option>
-                <option value="Piscis">Piscis</option>
-            </select>
-            <select id="selectgenero" onChange={handleSelectGenero}>
-                <option value="0">Seleciona un genero</option>
-                <option value="hombre">hombre</option>
-                <option value="mujer">mujer</option>
-                <option value="niño">niño</option>
-            </select>
 
-            <textarea id="textoEditar" cols="50" rows="10" onChange={(e) => setTextoEditar(e.target.value)}>
+        <div className='allAdminHome'>
+        <div className="admin-home">
+        <header className="header">
+        <img src="/logo.png" alt="Gana Como Loco Logo" className="logo" />
+
+        <nav>
+          <button onClick={() => navigate('/ChangePassword')}>Cambiar Contraseña</button>
+          <button onClick={() => navigate('/')}>Cerrar Sesión</button>
+        </nav>
+
+      </header>
+
+        <div className="main-content ">
+            <h2 id="welcomeAdmin">¡Bienvenido!, {adminData.nombre}</h2>
             
-            </textarea>
-            <button id="btnEditar" onClick={handleClick}>Editar</button>
-            <button id="btnHomeAdmin" onClick={goHome}>Home</button>
+            <section className="admin-info">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Email</th>
+                        <th>Rol</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{adminData.nombre}</td>
+                        <td>{adminData.email}</td>
+                        <td>{adminData.rol}</td>
+                    </tr>
+                </tbody>
+            </table>
+            </section>
+            
+
+            <section className="lista-codigo">
+            <h2>Lista de Ganadores</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Fecha de Registro</th>
+                        <th>Número de Código</th>
+                        <th>Fecha</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {ganadores.map((ganador, index) => (
+                        <tr key={index}>
+                            <td>{ganador.nombre}</td>
+                            <td>{ganador.premio}</td>
+                            <td>{ganador.fecha}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+            </section>
+            
         </div>
-    )
+        </div>
+        </div>
+    );
 }
 
 export default AdminHome;

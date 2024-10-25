@@ -114,7 +114,7 @@ function CreateUser() {
                         {showPassword ? "Ocultar" : "Mostrar"} Contraseña
                     </label>
                     </div>
-                    <button type="submit">Crear Usuario</button>
+                    <button type="submit" id="btnCreateUser"  >Crear Usuario</button>
                     <button type="button" id="btnCreateUser" onClick={() => navigate('/')}>
                         Regresar
                     </button>

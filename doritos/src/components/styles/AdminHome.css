@@ -1,28 +1,41 @@
+.admin-home {
+    font-family: 'Arial', sans-serif;
+    color: #333;  
+    min-height: 100vh;
+    display: flex; /* Usar flexbox para centrar el contenido */
+    flex-direction: column; /* Coloca los elementos en columna */
+    justify-content: center; /* Centra verticalmente */
+    align-items: center; /* Centra horizontalmente */
+  }
+
+
+.main-content {
+    max-width: 900px;
+    margin: 2rem; /* Elimina el auto margen para que el contenido esté centrado */
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+
+
 .container {
     height: 300px;
     display: grid;
     place-items: center;
 }
 
-#selectSignosah {
-    margin-top: 0px;
-    margin: 100px;
-    width: 400px;
-    padding: 5px 50px 5px 10px;
-    border-radius: 10px;
-    background-color: rgb(95, 82, 82);
-    color: white;
-}
+.welcomeAdmin {
+    color: #ff6600;
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+  }
 
-#editSignos{
-    margin-top: 0px;
-    margin: 30px;
-    width: 400px;
-    padding: 5px 50px 5px 10px;
-    border-radius: 10px;
-    background-color: rgb(95, 82, 82);
-    color: white;
-}
+
+  .user-info, .lista-codigo{
+    margin-bottom: 2rem;
+  }
 
 #btnEditarah {
     margin-top: 15px;
@@ -47,12 +60,6 @@
     color: white;
 }
 
-#textoEditar{
-    border-radius: 10px;
-    display: flex;
-    background-color: rgb(95, 82, 82);
-    color: white;
-}
 
 #btnHomeAdmin {
     margin-top: 15px;

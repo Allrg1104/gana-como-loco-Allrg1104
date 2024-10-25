@@ -48,8 +48,13 @@ function ChangePassword() {
         }
     };
     return (
-        <div className="container">
-            <h2 id="tituloCambioPassword">Cambiar Contraseña</h2>
+
+        <div className='Cambio de clave'>
+        <div className="change-home">
+        <div className="main-content">
+
+
+            <h2 id="welcomechange">Cambiar Contraseña</h2>
             <input
                 type="text"
                 placeholder="Nombre de usuario"
@@ -67,7 +72,7 @@ function ChangePassword() {
                 />
                 <button
                     type="button"
-                    className="toggle-password"
+                    className="toggle-password-cc"
                     onClick={() => setShowOldPassword(prev => !prev)}
                 >
                     {showOldPassword ? 'Ocultar' : 'Mostrar'}
@@ -83,7 +88,7 @@ function ChangePassword() {
                 />
                 <button
                     type="button"
-                    className="toggle-password"
+                    className="toggle-password-cc"
                     onClick={() => setShowNewPassword(prev => !prev)}
                 >
                     {showNewPassword ? 'Ocultar' : 'Mostrar'}
@@ -91,6 +96,8 @@ function ChangePassword() {
             </div>
             <button id="btnEditar" onClick={handleChangePassword}>Actualzar</button>
             <button id="btnHome" onClick={() => navigate('/UserHome')}>Regresar</button>
+        </div>
+        </div>
         </div>
     );
 }

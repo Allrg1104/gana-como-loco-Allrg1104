@@ -82,8 +82,7 @@ const Codigo = mongoose.model('premios', codeSchema,'lista');
 const newCode = async (req, res) => {
   const { codigo } = req.body;
   // Obtener el nombre del usuario desde req.user (asumiendo que el usuario autenticado está en req.user)
-  const regsuario = req.user.username; // Asegúrate de que req.user.name contenga el nombre del usuario
-
+  
   try {
     // Verificar si el código ya está registrado
     const codigoExistente = await Codigo.findOne({ codigo });
