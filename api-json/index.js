@@ -12,6 +12,8 @@ const corsOptions = {
   optionsSuccessStatus: 200
 };
 
+mongoose.connect('mongodb+srv://allrg1104:RRp4xn4bxtzh1EWS@allrg1104.xtqyw.mongodb.net/gana_como_loco?retryWrites=true&w=majority&appName=Allrg1104',{})
+
 const app = express();
 const PORT = process.env.PORT || 5000;
 
