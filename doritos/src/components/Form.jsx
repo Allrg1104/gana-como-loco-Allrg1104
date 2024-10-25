@@ -24,7 +24,7 @@ function LoginUser() {
 
             const data = await response.json();
 
-            if (data && data.success) {
+            /*if (data && data.success) {
                 alert(data.message);
                 navigate('/UserHome');
             } else {
@@ -33,6 +33,18 @@ function LoginUser() {
         } catch (error) {
             console.error('Error:', error);
             alert('El usuario o contraseña no son correctos');
+        }*/
+
+            if (data && data.success) {
+                alert(data.message);
+                callback(data.role);
+                navigate(data.role === 'user' ? "/userHome" : "/adminHome");
+            } else {
+                alert(data.message || 'Error desconocido');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Error en la solicitud: ' + error.message);
         }
     };
 
@@ -51,6 +63,7 @@ function LoginUser() {
             <button type="button" id="btnCreateUser" onClick={() => navigate('/createUser')}>
                 Crear Usuario
             </button>
+            
         </form>
     );
 }

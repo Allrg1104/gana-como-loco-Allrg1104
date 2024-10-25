@@ -18,7 +18,6 @@ const userSchema = new mongoose.Schema({
 
 const loginUser= async (req, res) => {
     const { username, password } = req.body;
-    const role = 'user';
 
     try {
         const validateUser = await User.findOne({ username, password });
