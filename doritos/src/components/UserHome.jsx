@@ -1,7 +1,45 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios'; // Asegúrate de importar axios
+import axios from 'axios';
 import './styles/UserHome.css';
+
+// Función para obtener datos del usuario
+const fetchUserData = async () => {
+  try {
+    const response = await axios.get('https://gana-como-loco-allrg1104-backend.vercel.app/v1/drivers/getPartip');
+    if (response.status === 200) {
+      return response.data;
+    } else {
+      console.error('Error al obtener los datos del usuario');
+      return null;
+    }
+  } catch (error) {
+    console.error('Error en la petición de usuario:', error);
+    return null;
+  }
+};
+
+// Función para registrar un nuevo código
+const registerCode = async (code) => {
+  try {
+    const response = await axios.post('https://gana-como-loco-allrg1104-backend.vercel.app/v1/drivers/regCode', { codigo: code });
+    return response.status === 200;
+  } catch (error) {
+    console.error('Error al registrar el código:', error);
+    return false;
+  }
+};
+
+// Función para obtener los códigos registrados
+const fetchCodes = async () => {
+  try {
+    const response = await axios.get('https://gana-como-loco-allrg1104-backend.vercel.app/v1/drivers/mostCode');
+    return response.data;
+  } catch (error) {
+    console.error('Error al obtener los códigos:', error);
+    return [];
+  }
+};
 
 function UserHome() {
   const [user, setUser] = useState({ nombre: '', username: '', numeroCelular: '', ciudad: '' });
@@ -10,67 +48,34 @@ function UserHome() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Función para obtener datos del usuario y códigos registrados desde el backend
-    const fetchUserData = async () => {
-      try {
-        const response = await fetch('https://gana-como-loco-allrg1104-backend.vercel.app/v1/drivers/getPartip', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            username: 'All@example.com', // Cambia este valor por el que corresponda
-            password: 'password123'      // Envía la contraseña para la validación
-          }),
+    // Llamada para obtener los datos del usuario y los códigos
+    const initializeData = async () => {
+      const userData = await fetchUserData();
+      if (userData) {
+        setUser({
+          nombre: userData.nombre,
+          username: userData.username,
+          numeroCelular: userData.numeroCelular,
+          ciudad: userData.ciudad,
         });
-
-        if (response.ok) {
-          const data = await response.json();
-          // Asumimos que `data` es un array y tomamos el primer elemento
-          setUser({ 
-            nombre: data[0].nombre, 
-            username: 'All@example.com', 
-            numeroCelular: data[0].numeroCelular, 
-            ciudad: data[0].ciudad 
-          });
-
-          // Obtener códigos registrados
-          const codesResponse = await axios.get('https://gana-como-loco-allrg1104-backend.vercel.app/v1/drivers/mostCode');
-          setCodes(codesResponse.data);
-        } else {
-          console.error('Error al obtener los datos del usuario');
-        }
-      } catch (error) {
-        console.error('Error en la petición:', error);
       }
+
+      const codesData = await fetchCodes();
+      setCodes(codesData);
     };
 
-    fetchUserData(); // Llama a la función para obtener los datos del usuario
+    initializeData();
   }, []);
 
-  // Función para enviar nuevo código al backend
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (newCode) {
-      try {
-        const response = await fetch('/api/newCode', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ codigo: newCode })
-        });
-
-        const result = await response.json();
-        if (response.ok) {
-          // Actualiza la lista de códigos en la tabla
-          setCodes([...codes, { fechaRegistro: new Date().toLocaleString(), numeroCodigo: newCode, estado: 'registrado' }]);
-          setNewCode('');
-        } else {
-          console.error(result.mensaje);
-        }
-      } catch (error) {
-        console.error('Error al registrar el código:', error);
+      const isSuccess = await registerCode(newCode);
+      if (isSuccess) {
+        setCodes([...codes, { fechaRegistro: new Date().toLocaleString(), numeroCodigo: newCode, estado: 'registrado' }]);
+        setNewCode('');
+      } else {
+        console.error('Error al registrar el código');
       }
     }
   };
@@ -138,12 +143,10 @@ function UserHome() {
                 </tr>
               </thead>
               <tbody>
-                {codes.map((code) => (
-                  <tr key={code._id}>
-                    <td>{code.user.nombre}</td>
-                    <td>{code.user.username}</td>
-                    <td>{code.estado}</td>
-                    <td>{code.codigo}</td>
+                {codes.map((code, index) => (
+                  <tr key={index}>
+                    <td>{code.fechaRegistro}</td>
+                    <td>{code.numeroCodigo}</td>
                     <td>{code.estado}</td>
                   </tr>
                 ))}
@@ -161,4 +164,5 @@ function UserHome() {
 }
 
 export default UserHome;
+
 
