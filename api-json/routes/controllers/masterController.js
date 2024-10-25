@@ -16,22 +16,33 @@ const userSchema = new mongoose.Schema({
   const User = mongoose.model('User', userSchema,'participantes');
 /////////////////////////////////////////////LOGIN/////////////////////////////////////////////////////////////////////
 
-const loginUser= async (req, res) => {
-    const { username, password } = req.body;
+const loginUser = async (req, res) => {
+  const { username, password } = req.body;
 
-    try {
-        const validateUser = await User.findOne({ username, password });
-        if (validateUser) {
-            console.log("Login exitoso para:", username);
-            return res.json({ success: true, message: 'Login Success' });
-        } else {
-            res.status(400).json({ success: false, message: 'El usuario o contraseña no son correctas' });
-        }
-    } catch (error) {
-        console.error('Error:', error);
-        res.status(500).json({ success: false, message: 'Error en el servidor' });
-    }
+  try {
+      const validateUser = await User.findOne({ username, password });
+
+      if (validateUser) {
+          console.log("Login exitoso para:", username);
+          // Supongamos que `validateUser` tiene un campo `role` y otros datos del usuario
+          return res.json({
+              success: true,
+              message: 'Login Success',
+              user: {
+                  username: validateUser.username,
+                  nombre: validateUser.nombre,
+                  role: validateUser.role, // Asegúrate de que el modelo de usuario tenga un campo `role`
+              },
+          });
+      } else {
+          return res.status(400).json({ success: false, message: 'El usuario o contraseña no son correctas' });
+      }
+  } catch (error) {
+      console.error('Error:', error);
+      return res.status(500).json({ success: false, message: 'Error en el servidor' });
+  }
 };
+
 
 /////////////////////////////////////////////Create User/////////////////////////////////////////////////////////////////////
 

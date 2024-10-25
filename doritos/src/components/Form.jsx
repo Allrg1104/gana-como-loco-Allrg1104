@@ -24,21 +24,10 @@ function LoginUser() {
 
             const data = await response.json();
 
-            /*if (data && data.success) {
-                alert(data.message);
-                navigate('/UserHome');
-            } else {
-                alert(data.message || 'Error desconocido');
-            }
-        } catch (error) {
-            console.error('Error:', error);
-            alert('El usuario o contraseña no son correctos');
-        }*/
-
             if (data && data.success) {
                 alert(data.message);
-                callback(data.role);
-                navigate(data.role === 'user' ? "/userHome" : "/adminHome");
+                // Navega a la vista correspondiente según el rol
+                navigate(data.user.role === 'user' ? "/userHome" : "/adminHome");
             } else {
                 alert(data.message || 'Error desconocido');
             }
@@ -52,20 +41,20 @@ function LoginUser() {
         <form onSubmit={validateUser}>
             <h1 id="txtBienvenida">Inicio de sesión</h1>
             <h4 className="txt">Correo: </h4>
-            <input type="text" className="entry" onChange={(e) => setUsername(e.target.value)}required /><br />
+            <input type="text" className="entry" onChange={(e) => setUsername(e.target.value)} required /><br />
             <h4 className="txt">Contraseña</h4>
-            <input type="password" className="entry" onChange={(e) => setPassword(e.target.value)}required /><br />
+            <input type="password" className="entry" onChange={(e) => setPassword(e.target.value)} required /><br />
             
-            {/* Botón para Inicio de sesion */}
+            {/* Botón para Inicio de sesión */}
             <button type="submit" id="btnCreateUser">
                 Ingresar
             </button>
             <button type="button" id="btnCreateUser" onClick={() => navigate('/createUser')}>
                 Crear Usuario
             </button>
-            
         </form>
     );
 }
 
 export default LoginUser;
+
